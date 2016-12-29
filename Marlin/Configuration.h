@@ -1,3 +1,5 @@
+#include <U8glib.h>
+
 /**
  * Marlin 3D Printer Firmware
  * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
@@ -253,7 +255,7 @@
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_BED 12
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
@@ -314,9 +316,9 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Ultimaker
-  // #define  DEFAULT_Kp 22.2
-  // #define  DEFAULT_Ki 1.08
-  // #define  DEFAULT_Kd 114
+  #define  DEFAULT_Kp 8.03
+  #define  DEFAULT_Ki .52
+  #define  DEFAULT_Kd 31.28
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -412,10 +414,10 @@
 
 // Uncomment one of these options to enable CoreXY, CoreXZ, or CoreYZ kinematics
 // either in the usual order or reversed
-#define COREXY
+//#define COREXY
 //#define COREXZ
 //#define COREYZ
-//#define COREYX
+#define COREYX
 //#define COREZX
 //#define COREZY
 
@@ -445,16 +447,16 @@
   // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
   #define ENDSTOPPULLUP_XMAX
   #define ENDSTOPPULLUP_YMAX
-  //#define ENDSTOPPULLUP_ZMAX
-  //#define ENDSTOPPULLUP_XMIN
-  //#define ENDSTOPPULLUP_YMIN
+  #define ENDSTOPPULLUP_ZMAX
+  #define ENDSTOPPULLUP_XMIN
+  #define ENDSTOPPULLUP_YMIN
   //#define ENDSTOPPULLUP_ZMIN
   //#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
@@ -624,7 +626,7 @@
 // Setting the wrong pin may have unexpected and potentially disastrous consequences.
 // Use with caution and do your homework.
 //
-#define Z_MIN_PROBE_PIN X_MAX_PIN
+#define Z_MIN_PROBE_PIN Z_MIN_PIN
 
 //
 // Enable Z_MIN_PROBE_ENDSTOP to use _both_ a Z Probe and a Z-min-endstop on the same machine.
@@ -842,11 +844,11 @@
 
   // 3 arbitrary points to probe.
   // A simple cross-product is used to estimate the plane of the bed.
-  #define ABL_PROBE_PT_1_X 0
+  #define ABL_PROBE_PT_1_X 45
   #define ABL_PROBE_PT_1_Y 0
   #define ABL_PROBE_PT_2_X 150
   #define ABL_PROBE_PT_2_Y 0
-  #define ABL_PROBE_PT_3_X 80
+  #define ABL_PROBE_PT_3_X 100
   #define ABL_PROBE_PT_3_Y 190
 
 #endif
@@ -885,7 +887,7 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50*60)
+#define HOMING_FEEDRATE_XY (20*60)
 #define HOMING_FEEDRATE_Z  (4*60)
 
 //=============================================================================
